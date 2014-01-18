@@ -1,0 +1,3 @@
+[submodule "mark-reid"]
+    path = _theme_packages/mark-reid
+    url = git://github.com/jekyllbootstrap/theme-mark-reid.git
