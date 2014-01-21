@@ -1,22 +1,14 @@
 ---
-layout: page
+layout: page 
 title: Recent Posts 
 ---
-{% include JB/setup %}
 
-
-<ul class="posts">
-  {% for post in site.posts %}
-    <article class="unit-article layout-post">
-    <div class="unit-inner unit-article-inner">
-        <div class="content">
-            <div class="bd">
-                <div class="entry-content">
-                    {{ post.content }}
-                </div><!-- entry-content -->
-            </div><!-- bd -->
-        </div><!-- content -->
-    </div><!-- unit-inner -->
-    </article>
-  {% endfor %}
-</ul>
+{% for post in site.posts limit: 10 %}
+  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  <p class="author">
+    <span class="date">{{ post.date | date: "%m-%d-%Y" }}</span>
+  </p>
+  <div class="content">
+    {{ post.content }}
+  </div>
+{% endfor %}
