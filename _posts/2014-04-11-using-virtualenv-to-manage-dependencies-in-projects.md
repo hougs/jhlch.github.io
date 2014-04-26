@@ -46,9 +46,9 @@ Also, when installing virtualenv wrapper, add the following lines to you ~/.bash
 and source ~/.bash_profile.
 
 Then you should also install autoenv. Autoenv allow us to execute a .env script
- that is in the root of a project directory. This is useful for setting 
- environment variables and checking at an env conforms to version requirements
-  listed in requirements.txt.
+that is in the root of a project directory. This is useful for setting 
+environment variables and checking at an env conforms to version requirements
+listed in requirements.txt.
 
 Configure a scipy/numpy/pandas/scikit-learn virtual env
 In a more perfect world, we could use pip to install packages listed in the 
@@ -64,7 +64,7 @@ Assuming you installed and configured virtualenvwrapper, you can create a new vi
 
     mkvirtualenv myenv
 
-This creates a new virtual env named `myenv'.
+This creates a new virtual env named `myenv`.
 You can then start installing
 the following packages into your virtual env with pip:
     
