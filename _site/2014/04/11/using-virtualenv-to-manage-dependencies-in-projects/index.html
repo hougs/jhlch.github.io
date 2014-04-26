@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>Recent Posts &larr; </title>
+   <title>Using virtualenv to manage dependencies in projects. &larr; </title>
    <meta name="author" content="Juliet Hougland" />
 
    <link rel="start" href="/" />
@@ -44,13 +44,23 @@
   
 <div id="page">
 	
-<h1 class="emphnext">Recent Posts</h1>
-<h1><a href='/2014/04/11/using-virtualenv-to-manage-dependencies-in-projects'>Using virtualenv to manage dependencies in projects.</a></h1><p class='author'>
-    <span class='date'>04-11-2014</span>
-  </p><div class='content'>
-    <p>You should set up virtualenv before you start developing in Python on a DeepSignal project. This helps us manage and keep our dependencies consistent within a project. With virtualenv, virtualenvwrapper, and autoenv it will be easy to maintain consistent python environments. Autoenv allows us to execute a script when we cd into a directory. This script runs pip install -r requirements.txt when you cd into the root dir of a project. If your current environment does not conform to the requirements listed, pip will try to install the packages. The way to make this very easy for ourselves is to create a base working environment that includes numpy, scipy, and pandas, and build off that as needed.</p>
+  <h1 class="emphnext">Using virtualenv to manage dependencies in projects.</h1>
+  <ul class="tag_box inline">
+  
+  
 
-<h1 id='install_virtualenv_virtualenvwrapper_and_autoenv'>Install Virtualenv, VirtualenvWrapper, and Autoenv</h1>
+
+  
+    
+  
+
+
+
+  </ul>
+
+  <p>You should set up virtualenv before you start developing in Python on a DeepSignal project. This helps us manage and keep our dependencies consistent within a project. With virtualenv, virtualenvwrapper, and autoenv it will be easy to maintain consistent python environments. Autoenv allows us to execute a script when we cd into a directory. This script runs pip install -r requirements.txt when you cd into the root dir of a project. If your current environment does not conform to the requirements listed, pip will try to install the packages. The way to make this very easy for ourselves is to create a base working environment that includes numpy, scipy, and pandas, and build off that as needed.</p>
+
+<h1 id="install_virtualenv_virtualenvwrapper_and_autoenv">Install Virtualenv, VirtualenvWrapper, and Autoenv</h1>
 
 <p>You should install virtualenv, virtualenvwrapper, and autoenv as described in this virtualenv site. Virtualenv allows us to manage dependencies and versions on a project by project basis. Virtuale nv allows you to define and work n isolated python environment. VirtualenvWrapper makes it more convenient to work with virtualenv. Autoenv allows us to automatically set a virtual env when you cd into a directory.</p>
 
@@ -118,15 +128,23 @@ pip install scikit-learn</code></pre>
 <p>You may now check if everything is installed correctly for a project by going to that project’s root dir and typing <code>pip install -r requirements.txt</code>.</p>
 
 <p>You can deactivate you virtual env by typing <code>deactivate</code>.</p>
-  </div><h1><a href='/2014/01/20/hello-blog'>Hello Blog!</a></h1><p class='author'>
-    <span class='date'>01-20-2014</span>
-  </p><div class='content'>
-    <p>I’ve started a blog to record the things I am thinking about, working on, and learning. My interests range between analyzing data and designing robust predictive models, contributing to open source software, and interesting challenges that come out of working at early stage tech startups.</p>
 
-<p>I’ll mostly be writing as a way to record what I am learning and how I am learning it. Writing out what I am thinking in the most detailed way possible has always been the best and fastest way for me to learn. I’ve been hankering to really dig in to deep learning, specifically autoencoders. Improving my handle on Scala is definitely on my TODO list. So, here goes nothing.</p>
+  <address class="signature">
+    <a class="author" href="/">Juliet Hougland</a> 
+    <span class="date">11 April 2014</span>
+    <span class="location"></span>
+  </address>
+  
+  <div class="prev-next">
+  
+  
+    <a href="/2014/01/20/hello-blog" class="prev" title="Hello Blog!">&larr; Earlier Post</a>
+  
   </div>
-
+  
 </div><!-- End Page -->
+
+
 
 
   

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
  
  <title>Dadaist Dataist</title>
- <link href="http://username.github.io/" rel="self"/>
- <link href="http://username.github.io"/>
- <updated>2014-01-20T21:04:05-08:00</updated>
- <id>http://username.github.io</id>
+ <link href="http://jhlch.github.io/" rel="self"/>
+ <link href="http://jhlch.github.io"/>
+ <updated>2014-04-11T16:57:44-07:00</updated>
+ <id>http://jhlch.github.io</id>
  <author>
    <name>Juliet Hougland</name>
    <email>blah@email.test</email>
@@ -13,10 +13,87 @@
 
  
  <entry>
+   <title>Using virtualenv to manage dependencies in projects.</title>
+   <link href="http://jhlch.github.io/2014/04/11/using-virtualenv-to-manage-dependencies-in-projects"/>
+   <updated>2014-04-11T00:00:00-07:00</updated>
+   <id>http://jhlch.github.io/2014/04/11/using-virtualenv-to-manage-dependencies-in-projects</id>
+   <content type="html">&lt;p&gt;You should set up virtualenv before you start developing in Python on a DeepSignal project. This helps us manage and keep our dependencies consistent within a project. With virtualenv, virtualenvwrapper, and autoenv it will be easy to maintain consistent python environments. Autoenv allows us to execute a script when we cd into a directory. This script runs pip install -r requirements.txt when you cd into the root dir of a project. If your current environment does not conform to the requirements listed, pip will try to install the packages. The way to make this very easy for ourselves is to create a base working environment that includes numpy, scipy, and pandas, and build off that as needed.&lt;/p&gt;
+
+&lt;h1 id=&quot;install_virtualenv_virtualenvwrapper_and_autoenv&quot;&gt;Install Virtualenv, VirtualenvWrapper, and Autoenv&lt;/h1&gt;
+
+&lt;p&gt;You should install virtualenv, virtualenvwrapper, and autoenv as described in this virtualenv site. Virtualenv allows us to manage dependencies and versions on a project by project basis. Virtuale nv allows you to define and work n isolated python environment. VirtualenvWrapper makes it more convenient to work with virtualenv. Autoenv allows us to automatically set a virtual env when you cd into a directory.&lt;/p&gt;
+
+&lt;p&gt;You should execute the following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install virtualenv
+pip install virtualenvwrapper&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, when installing virtualenv wrapper, add the following lines to you ~/.bash_profile.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/&amp;lt;your source dir&amp;gt;
+source /usr/local/bin/virtualenvwrapper.sh&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and source ~/.bash_profile.&lt;/p&gt;
+
+&lt;p&gt;Then you should also install autoenv. Autoenv allow us to execute a .env script that is in the root of a project directory. This is useful for setting environment variables and checking at an env conforms to version requirements listed in requirements.txt.&lt;/p&gt;
+
+&lt;p&gt;Configure a scipy/numpy/pandas/scikit-learn virtual env In a more perfect world, we could use pip to install packages listed in the requirements.txt file that is stored in a project’s repo. In reality, it is better to have a virtualenv that already works and just check that it conforms to the requirements.txt. This is because installing these packages is hard and &lt;code&gt;pip install -r requirements.txt&lt;/code&gt; will likely not work without you first setting up an env that satisifes those requirements. Give it a try, but if it doesn’t work there are instructions below for using pip and brew to install packages into a useful virtualenv.&lt;/p&gt;
+
+&lt;p&gt;Assuming you installed and configured virtualenvwrapper, you can create a new virtual env with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkvirtualenv deepsignal&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This creates a new virtual env named &lt;code&gt;deepsignal&lt;/code&gt;. You can then start installing the following packages into your virtual env with pip:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install -U setuptools
+pip install -U pip
+pip install argparse
+pip install numpy&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Scipy depends on a Fortran compiler. If you need one, you can easily install it with brew:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install gfortran
+pip install scipy&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I had to uninstall and reinstall py2cairo in order to install matplotlib. Check out the simple solution here. This may not be required for you, but if it is just:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew rm py2cairo
+brew install py2cairo&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you can install matplotlib, and ipython:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install matplotlib
+pip install ipython[all]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you run into trouble installing python, perhaps with a clang error or a message like “cc failed with exit code 1” then you may be running into trouble with unused flags to the c compiler. Run these commands in your shell before running &lt;code&gt;pip install&lt;/code&gt;, and it may help the compiler not fail when there are unused args:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export CFLAGS=-Qunused-arguments
+export CPPFLAGS=-Qunused-arguments&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;pandas need PyTables, which in turn depends on hdf5. You have to get that from a special tap:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;brew install homebrew/science/hdf5&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you can install PyTables, and potential upgrade libs like Cython and numexpr:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;pip install -U numexpr
+pip install -U Cython
+pip install tables
+pip install statsmodels
+pip install pandas
+pip install scikit-learn&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may now check if everything is installed correctly for a project by going to that project’s root dir and typing &lt;code&gt;pip install -r requirements.txt&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can deactivate you virtual env by typing &lt;code&gt;deactivate&lt;/code&gt;.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>Hello Blog!</title>
-   <link href="http://username.github.io/2014/01/20/hello-blog"/>
+   <link href="http://jhlch.github.io/2014/01/20/hello-blog"/>
    <updated>2014-01-20T00:00:00-08:00</updated>
-   <id>http://username.github.io/2014/01/20/hello-blog</id>
+   <id>http://jhlch.github.io/2014/01/20/hello-blog</id>
    <content type="html">&lt;p&gt;I’ve started a blog to record the things I am thinking about, working on, and learning. My interests range between analyzing data and designing robust predictive models, contributing to open source software, and interesting challenges that come out of working at early stage tech startups.&lt;/p&gt;
 
 &lt;p&gt;I’ll mostly be writing as a way to record what I am learning and how I am learning it. Writing out what I am thinking in the most detailed way possible has always been the best and fastest way for me to learn. I’ve been hankering to really dig in to deep learning, specifically autoencoders. Improving my handle on Scala is definitely on my TODO list. So, here goes nothing.&lt;/p&gt;</content>
