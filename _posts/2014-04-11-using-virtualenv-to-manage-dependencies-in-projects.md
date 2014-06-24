@@ -37,6 +37,7 @@ You should execute the following commands:
 
     pip install virtualenv
     pip install virtualenvwrapper
+
 Also, when installing virtualenv wrapper, add the following lines to you ~/.bash_profile.
 
     export WORKON_HOME=$HOME/.virtualenvs
